@@ -1,5 +1,5 @@
 function lookupMetadata(url) {
-    return `what? ${url}`;
+    return '';
 }
 
 exports.metadata = lookupMetadata;
