@@ -5,6 +5,11 @@ test('returns empty metadata for an empty head', () => {
 });
 
 test('returns facebook title', () => {
-    const html = `<html><head><meta property="og:title" content="Test-driven Development: CodeMash" /></head></html>`;
-    expect(digger.metadata(html).title).toEqual('Test-driven Development: CodeMash');
+    const html = `<html><head><meta property="og:title" content="this is my title" /></head></html>`;
+    expect(digger.metadata(html).title).toEqual('this is my title');
+});
+
+test('returns facebook description', () => {
+    const html = `<html><head><meta property="og:description" content="this is my description" /></head></html>`;
+    expect(digger.metadata(html).description).toEqual('this is my description');
 });
