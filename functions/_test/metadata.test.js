@@ -31,3 +31,19 @@ test('facebook overrides page', () => {
     });
 });
 
+
+test('twitter overrides page', () => {
+    const html = `<html><head>
+        <meta name="twitter:title" content="twitter title" />
+        <meta name="twitter:description" content="twitter description" />
+        <meta name="twitter:image" content="twitter image" />
+        <meta name="description" content="page description" />
+        <title>page title</title>
+    </head>`;
+    expect(digger.metadata(html)).toEqual({
+        title: 'twitter title',
+        description: 'twitter description',
+        image: 'twitter image'
+    });
+});
+
