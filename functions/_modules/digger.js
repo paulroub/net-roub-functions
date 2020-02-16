@@ -4,11 +4,29 @@ const { JSDOM } = jsdom;
 function lookupMetadata(html) {
     const dom = new JSDOM(html);
     const head = dom.window.document.head;
+    const body = dom.window.document.body;
 
     const facebookTags = lookupFacebookMetadata(head);
     const twitterTags = lookupTwitterMetadata(head);
+    const pageTags = lookupPageMetadata(head, body);
 
-    return Object.assign(facebookTags, twitterTags);
+    return Object.assign(facebookTags, twitterTags, pageTags);
+}
+
+function lookupPageMetadata(head, body) {
+    const metadata = {};
+
+    const title = head.querySelector('title');
+    const description = head.querySelector('meta[name="description"]');
+
+    if (title) {
+        metadata.title = title.textContent;
+    }
+    if (description) {
+        metadata.description = description.getAttribute('content');
+    }
+
+    return metadata;
 }
 
 function lookupFacebookMetadata(head) {
