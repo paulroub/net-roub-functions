@@ -5,6 +5,6 @@ test('returns empty metadata for an empty head', () => {
 });
 
 test('returns facebook title', () => {
-    const html = `<meta property="og:title" content="Test-driven Development: CodeMash" />`;
+    const html = `<html><head><meta property="og:title" content="Test-driven Development: CodeMash" /></head></html>`;
     expect(digger.metadata(html).title).toEqual('Test-driven Development: CodeMash');
 });
