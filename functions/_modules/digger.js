@@ -6,8 +6,9 @@ function lookupMetadata(html) {
     const head = dom.window.document.head;
 
     const facebookTags = lookupFacebookMetadata(head);
+    const twitterTags = lookupTwitterMetadata(head);
 
-    return facebookTags;
+    return Object.assign(facebookTags, twitterTags);
 }
 
 function lookupFacebookMetadata(head) {
@@ -16,6 +17,20 @@ function lookupFacebookMetadata(head) {
 
     metaTags.forEach((tag) => {
         const property = tag.getAttribute('property').replace(/^og:/, '');
+        const content = tag.getAttribute('content');
+
+        metadata[property] = content;
+    });
+
+    return metadata;
+}
+
+function lookupTwitterMetadata(head) {
+    const metaTags = [...head.querySelectorAll('meta[property^="twitter:"]')];
+    const metadata = {};
+
+    metaTags.forEach((tag) => {
+        const property = tag.getAttribute('property').replace(/^twitter:/, '');
         const content = tag.getAttribute('content');
 
         metadata[property] = content;
