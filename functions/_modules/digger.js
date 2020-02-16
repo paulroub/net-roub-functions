@@ -1,19 +1,17 @@
-const jsdom = require("jsdom");
-const { JSDOM } = jsdom;
+const {JSDOM} = require("jsdom");
 
 function lookupMetadata(html) {
     const dom = new JSDOM(html);
     const head = dom.window.document.head;
-    const body = dom.window.document.body;
 
     const facebookTags = lookupFacebookMetadata(head);
     const twitterTags = lookupTwitterMetadata(head);
-    const pageTags = lookupPageMetadata(head, body);
+    const pageTags = lookupPageMetadata(head);
 
     return Object.assign(pageTags, twitterTags, facebookTags);
 }
 
-function lookupPageMetadata(head, body) {
+function lookupPageMetadata(head) {
     const metadata = {};
 
     const title = head.querySelector('title');
