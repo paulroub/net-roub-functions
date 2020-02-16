@@ -26,11 +26,11 @@ function lookupFacebookMetadata(head) {
 }
 
 function lookupTwitterMetadata(head) {
-    const metaTags = [...head.querySelectorAll('meta[property^="twitter:"]')];
+    const metaTags = [...head.querySelectorAll('meta[name^="twitter:"]')];
     const metadata = {};
 
     metaTags.forEach((tag) => {
-        const property = tag.getAttribute('property').replace(/^twitter:/, '');
+        const property = tag.getAttribute('name').replace(/^twitter:/, '');
         const content = tag.getAttribute('content');
 
         metadata[property] = content;
