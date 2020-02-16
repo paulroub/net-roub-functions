@@ -10,7 +10,7 @@ function lookupMetadata(html) {
     const twitterTags = lookupTwitterMetadata(head);
     const pageTags = lookupPageMetadata(head, body);
 
-    return Object.assign(twitterTags, facebookTags, pageTags);
+    return Object.assign(twitterTags, pageTags, facebookTags);
 }
 
 function lookupPageMetadata(head, body) {
