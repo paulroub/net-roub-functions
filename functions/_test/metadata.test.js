@@ -1,0 +1,18 @@
+const digger = require('../_modules/digger');
+
+test('facebook overrides twitter', () => {
+    const html = `<html><head>
+        <meta property="og:title" content="facebook title" />
+        <meta name="twitter:title" content="twitter title" />
+        <meta property="og:description" content="facebook description" />
+        <meta name="twitter:description" content="twitter description" />
+        <meta property="og:image" content="facebook image" />
+        <meta name="twitter:image" content="twitter image" />
+    `;
+    expect(digger.metadata(html)).toEqual({
+        title: 'facebook title',
+        description: 'facebook description',
+        image: 'facebook image'
+    });
+});
+
