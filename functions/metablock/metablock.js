@@ -1,4 +1,5 @@
 const digger = require('../_modules/digger');
+const request = require('request');
 
 // Docs on event and context https://www.netlify.com/docs/functions/#the-handler-method
 exports.handler = async (event) => {
@@ -12,14 +13,12 @@ exports.handler = async (event) => {
       };
     }
 
-    const html = '<html><head><title>My title!</title></head></html>';
-
     const body = await(ajax(url));
 
     return {
       statusCode: 200,
       body: JSON.stringify({
-        message: digger.metadata(html)
+        message: digger.metadata(body)
       })
     };
   }
@@ -33,24 +32,13 @@ exports.handler = async (event) => {
 
 async function ajax(url) {
   return new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest();
-
-    xhr.onreadystatechange = () => {
-        const DONE = 4;
-        const OK = 200;
-
-        if (xhr.readyState === DONE) {
-            if (xhr.status === OK) {
-                if (success) {
-                    success(xhr.responseText);
-                }
-            }
-            else if (failure) {
-                failure(xhr.status);
-            }
-        }
-    };
-    xhr.open('GET', url);
-    xhr.send(null);
+    request(url, (err, res, body) => {
+      if (err) {
+        reject(err);
+      }
+      else {
+        resolve(body);
+      }
+    });
   });
 }
