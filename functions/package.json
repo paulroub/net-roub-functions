@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest _test",
     "lint": "eslint .",
-    "postinstall": "netlify-lambda install"
+    "postinstall": "cd .. ; netlify-lambda install"
   },
   "author": "",
   "license": "ISC",
