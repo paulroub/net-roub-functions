@@ -1,4 +1,4 @@
-const digger = require('../_modules/digger');
+const digger = require('../modules/digger');
 const request = require('request');
 
 // Docs on event and context https://www.netlify.com/docs/functions/#the-handler-method

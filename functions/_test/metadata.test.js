@@ -1,4 +1,4 @@
-const digger = require('../_modules/digger');
+const digger = require('../modules/digger');
 
 test('facebook overrides twitter', () => {
     const html = `<html><head>

@@ -1,4 +1,4 @@
-const digger = require('../_modules/digger');
+const digger = require('../modules/digger');
 
 test('returns page title', () => {
     const html = `<html><head><title>this is my title</title></html>`;

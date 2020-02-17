@@ -1,4 +1,4 @@
-const digger = require('../_modules/digger');
+const digger = require('../modules/digger');
 
 test('returns twitter title', () => {
     const html = `<html><head><meta name="twitter:title" content="this is my title" /></head></html>`;
